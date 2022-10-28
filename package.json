@@ -1,0 +1,14 @@
+{
+  "name": "crypto-upvoting-api",
+  "version": "1.0.0",
+  "description": "Ranqueamento de criptomoedas através dos votos dos usuários",
+  "main": "index.js",
+  "scripts": {
+    "db:up": "(cd database && docker-compose up)",
+    "db:down": "(cd database && docker-compose down)",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Bruno Riwerson Silva",
+  "license": "ISC"
+}
