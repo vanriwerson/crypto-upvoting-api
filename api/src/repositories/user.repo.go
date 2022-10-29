@@ -1,4 +1,4 @@
-package repos
+package repositories
 
 import (
 	"api/src/models"
@@ -100,7 +100,7 @@ func (repo UsersRepo) Update(id uint64, user models.User) error {
 
 func (repo UsersRepo) Delete(id uint64) error {
 	statement, err := repo.db.Prepare(
-		"DELETE FROM cryptoUpvoting.usuarios WHERE id = ?",
+		"DELETE FROM cryptoUpvoting.users WHERE id = ?",
 	)
 	if err != nil {
 		return err
@@ -112,4 +112,25 @@ func (repo UsersRepo) Delete(id uint64) error {
 	}
 
 	return nil
+}
+
+func (repo UsersRepo) FindByMail(email string) (models.User, error) {
+	row, err := repo.db.Query(
+		"SELECT * FROM cryptoUpvoting.users WHERE email = ?",
+		email,
+	)
+	if err != nil {
+		return models.User{}, err // passando um usuário vazio para o retorno
+	}
+	defer row.Close()
+
+	var user models.User
+
+	if row.Next() {
+		if err = row.Scan(&user.ID, &user.Name, user.Email, user.Password, user.CreatedAt); err != nil {
+			return models.User{}, err
+		}
+	}
+
+	return user, nil
 }
