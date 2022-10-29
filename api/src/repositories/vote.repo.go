@@ -37,11 +37,11 @@ func (repo VotesRepo) Create(vote models.Vote) (uint64, error) {
 
 func (repo VotesRepo) FindAll() ([]models.Ranking, error) {
 	rows, err := repo.db.Query(
-		"SELECT cr.name AS name, COUNT(vo.cryptoId) AS votes" +
-			"FROM cryptoUpvoting.votes as vo" +
-			"JOIN cryptoUpvoting.cryptos AS cr" +
-			"ON vo.cryptoId = cr.id" +
-			"GROUP BY vo.cryptoId" +
+		"SELECT cr.name AS name, COUNT(vo.cryptoId) AS votes " +
+			"FROM cryptoUpvoting.votes as vo " +
+			"JOIN cryptoUpvoting.cryptos AS cr " +
+			"ON vo.cryptoId = cr.id " +
+			"GROUP BY vo.cryptoId " +
 			"ORDER BY votes DESC, name ASC")
 	if err != nil {
 		return nil, err
@@ -66,15 +66,15 @@ func (repo VotesRepo) FindAll() ([]models.Ranking, error) {
 
 func (repo VotesRepo) FindVotesByUser(id uint64) ([]models.Ranking, error) {
 	rows, err := repo.db.Query(
-		"SELECT cr.name AS name, COUNT(vo.cryptoId) AS votes"+
-			"FROM cryptoUpvoting.votes as vo"+
-			"JOIN cryptoUpvoting.cryptos AS cr"+
-			"ON vo.cryptoId = cr.id"+
-			"JOIN cryptoUpvoting.users AS us"+
-			"ON vo.userId = us.id"+
-			"WHERE us.id = ?"+
-			"GROUP BY vo.cryptoId"+
-			"ORDER BY votes DESC, name ASC",
+		"SELECT cr.name AS name, COUNT(vo.cryptoId) AS votes "+
+			"FROM cryptoUpvoting.votes as vo "+
+			"JOIN cryptoUpvoting.cryptos AS cr "+
+			"ON vo.cryptoId = cr.id "+
+			"JOIN cryptoUpvoting.users AS us "+
+			"ON vo.userId = us.id "+
+			"WHERE us.id = ? "+
+			"GROUP BY vo.cryptoId "+
+			"ORDER BY votes DESC, name ASC ",
 		id,
 	)
 	if err != nil {
