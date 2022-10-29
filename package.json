@@ -4,9 +4,9 @@
   "description": "Ranqueamento de criptomoedas através dos votos dos usuários",
   "main": "index.js",
   "scripts": {
-    "db:up": "(cd database && docker-compose up)",
+    "db:up": "(cd database && docker-compose up -d)",
     "db:down": "(cd database && docker-compose down)",
-    "api:up": "go run api/main.go",
+    "api:up": "(cd api && go run main.go)",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
