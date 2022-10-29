@@ -13,7 +13,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func Create(w http.ResponseWriter, r *http.Request) {
+func CreateUser(w http.ResponseWriter, r *http.Request) {
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		responses.Err(w, http.StatusUnprocessableEntity, err)
@@ -49,7 +49,7 @@ func Create(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusCreated, user)
 }
 
-func FindAll(w http.ResponseWriter, r *http.Request) {
+func FindAllUsers(w http.ResponseWriter, r *http.Request) {
 	db, err := db.Conect()
 	if err != nil {
 		responses.Err(w, http.StatusInternalServerError, err)
@@ -67,7 +67,7 @@ func FindAll(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusOK, users)
 }
 
-func FindOne(w http.ResponseWriter, r *http.Request) {
+func FindUserById(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	userID, err := strconv.ParseUint(params["id"], 10, 64)
 	if err != nil {
@@ -92,7 +92,7 @@ func FindOne(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusOK, user)
 }
 
-func Update(w http.ResponseWriter, r *http.Request) {
+func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	userID, err := strconv.ParseUint(params["id"], 10, 64)
 	if err != nil {
@@ -133,7 +133,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusNoContent, nil)
 }
 
-func Delete(w http.ResponseWriter, r *http.Request) {
+func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	userID, err := strconv.ParseUint(params["id"], 10, 64)
 	if err != nil {
