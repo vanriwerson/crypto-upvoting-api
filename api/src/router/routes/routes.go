@@ -19,6 +19,7 @@ func SetRoutes(r *mux.Router) *mux.Router {
 	routes := userRoutes
 	routes = append(routes, loginRoute)
 	routes = append(routes, cryptoRoutes...)
+	routes = append(routes, voteRoutes...)
 
 	for _, route := range routes {
 		r.HandleFunc(route.URI, middlewares.Logger(route.Controller)).Methods(route.Method)
