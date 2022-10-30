@@ -22,7 +22,13 @@ func SetRoutes(r *mux.Router) *mux.Router {
 	routes = append(routes, voteRoutes...)
 
 	for _, route := range routes {
-		r.HandleFunc(route.URI, middlewares.Logger(route.Controller)).Methods(route.Method)
+		if route.RequiresAuth { // aplicação dos middlewares por aninhamento para rotas protegidas
+			r.HandleFunc(route.URI,
+				middlewares.Logger(middlewares.Authenticate(route.Controller)),
+			).Methods(route.Method)
+		} else {
+			r.HandleFunc(route.URI, middlewares.Logger(route.Controller)).Methods(route.Method)
+		}
 	}
 
 	return r
