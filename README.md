@@ -12,9 +12,13 @@ To this app, I used a mySQL to persist data, Docker-compose to create and run a 
 ~~~bash
 npm run db:up
 ~~~
+
 2. Run the script `database/sql/migrations.sql` in your DBMS (i've used MySQL Workbench) to generate database structure.
-3. Run the script `database/sql/migrations.sql` in your DBMS to populate the tables previously created.
+
+3. Run the script `database/sql/migrations.sql` in your DBMS to populate the previously created tables.
+
 4. Adjust the environment variables according the `database/docker-compose.yml` by creating a .env file (view `api/.env.example`).
+
 5. Run the API with:
 ~~~bash
 npm run api:up
