@@ -1,10 +1,12 @@
 package controllers
 
 import (
+	"api/src/auth"
 	"api/src/db"
 	"api/src/models"
 	repos "api/src/repositories"
 	"api/src/responses"
+	"api/src/security"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
@@ -37,10 +39,16 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if loggedUser.Password != user.Password {
+	if err = security.VerifyPassword(loggedUser.Password, user.Password); err != nil {
 		responses.Err(w, http.StatusUnauthorized, err)
 		return
 	}
 
-	w.Write([]byte("usuario logado"))
+	token, erro := auth.GenerateToken(loggedUser.ID)
+	if erro != nil {
+		responses.Err(w, http.StatusInternalServerError, err)
+		return
+	}
+
+	w.Write([]byte(token))
 }
