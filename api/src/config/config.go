@@ -12,6 +12,7 @@ import (
 var (
 	DbConnectionStr = ""
 	Port            = 0
+	SecretKey       []byte
 )
 
 // LoadEnvVars inicializa as váriaveis de ambiente
@@ -34,4 +35,6 @@ func LoadEnvVars() {
 	if err != nil {
 		Port = 5000
 	}
+
+	SecretKey = []byte(os.Getenv("JWT_SECRET"))
 }
