@@ -10,7 +10,7 @@ var cryptoRoutes = []Route{
 		URI:          "/cryptos",
 		Method:       http.MethodPost,
 		Controller:   controllers.CreateCrypto,
-		RequiresAuth: false,
+		RequiresAuth: true,
 	},
 	{
 		URI:          "/cryptos",
@@ -28,12 +28,12 @@ var cryptoRoutes = []Route{
 		URI:          "/cryptos/{id}",
 		Method:       http.MethodPut,
 		Controller:   controllers.UpdateCrypto,
-		RequiresAuth: false,
+		RequiresAuth: true,
 	},
 	{
 		URI:          "/cryptos/{id}",
 		Method:       http.MethodDelete,
 		Controller:   controllers.DeleteCrypto,
-		RequiresAuth: false,
+		RequiresAuth: true,
 	},
 }

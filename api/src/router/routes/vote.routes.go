@@ -10,7 +10,7 @@ var voteRoutes = []Route{
 		URI:          "/vote",
 		Method:       http.MethodPost,
 		Controller:   controllers.CreateVote,
-		RequiresAuth: false,
+		RequiresAuth: true,
 	},
 	{
 		URI:          "/ranking",
