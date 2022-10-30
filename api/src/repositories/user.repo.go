@@ -127,7 +127,7 @@ func (repo UsersRepo) FindByMail(email string) (models.User, error) {
 	var user models.User
 
 	if row.Next() {
-		if err = row.Scan(&user.ID, &user.Name, user.Email, user.Password, user.CreatedAt); err != nil {
+		if err = row.Scan(&user.ID, &user.Name, &user.Email, &user.Password, &user.CreatedAt); err != nil {
 			return models.User{}, err
 		}
 	}
