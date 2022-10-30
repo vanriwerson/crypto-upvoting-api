@@ -2,12 +2,14 @@ package models
 
 import (
 	"errors"
+	"strconv"
+	"strings"
 )
 
 type Vote struct {
 	ID       uint64 `json:"id,omitempty"` // omit empty faz com que o campo não seja passado para o JSON caso esteja vazio
-	UserId   uint64 `json:"userId,omitempty"`
-	CryptoId uint64 `json:"cryptoId,omitempty"`
+	UserId   string `json:"userId,omitempty"`
+	CryptoId string `json:"cryptoId,omitempty"`
 }
 
 type Ranking struct {
@@ -28,18 +30,38 @@ func (vote *Vote) Prepare() error {
 }
 
 func (vote *Vote) validate() error {
-	if vote.UserId <= 0 {
+	parsedUser, err := strconv.ParseUint(vote.UserId, 10, 64)
+	if err != nil {
+		return errors.New("userId must be a number")
+	}
+
+	parsedCrypto, err := strconv.ParseUint(vote.CryptoId, 10, 64)
+	if err != nil {
+		return errors.New("cryptoId must be a number")
+	}
+
+	if vote.UserId == "" {
 		return errors.New("userId is required")
 	}
-	if vote.CryptoId <= 0 {
+
+	if parsedUser <= 0 {
+		return errors.New("userId must be a valid id")
+	}
+
+	if vote.CryptoId == "" {
 		return errors.New("cryptoId is required")
 	}
+
+	if parsedCrypto <= 0 {
+		return errors.New("cryptoId must be a valid id")
+	}
+
 	return nil
 }
 
 func (vote *Vote) format() error {
-	vote.UserId = uint64(vote.UserId)
-	vote.CryptoId = uint64(vote.CryptoId)
+	vote.UserId = strings.TrimSpace(vote.UserId)
+	vote.CryptoId = strings.TrimSpace(vote.CryptoId)
 
 	return nil
 }
