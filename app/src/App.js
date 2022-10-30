@@ -1,9 +1,13 @@
 import './App.css';
+import Router from './routes';
+import NavLinks from './components/NavLinks';
 
 function App() {
   return (
     <div className="App">
-      <h1>Users favorite Cryptos</h1>
+      <NavLinks />
+      <h1>Users Favorite Crypto</h1>
+      <Router />
     </div>
   );
 }
