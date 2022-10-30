@@ -23,6 +23,10 @@ npm run db:up
 ~~~bash
 npm run api:up
 ~~~
-(To-do: Complements about fron-end execution)
+
+6. Run the front-end app with:
+~~~bash
+npm run web:up
+~~~
 
 #### Developed by [Bruno Riwerson Silva](https://www.linkedin.com/in/bruno-riwerson/)

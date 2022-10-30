@@ -7,6 +7,7 @@
     "db:up": "(cd database && docker-compose up -d)",
     "db:down": "(cd database && docker-compose down)",
     "api:up": "(cd api && go run main.go)",
+    "web:up": "(cd app && npm start)",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
