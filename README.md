@@ -24,7 +24,12 @@ npm run db:up
 npm run api:up
 ~~~
 
-6. Run the front-end app with:
+6. Install the front-end app dependencies with:
+~~~bash
+cd app && npm install && cd ..
+~~~
+
+7. Run the front-end app with:
 ~~~bash
 npm run web:up
 ~~~
