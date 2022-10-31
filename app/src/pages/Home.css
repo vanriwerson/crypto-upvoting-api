@@ -1,0 +1,19 @@
+.cta {
+  animation: blink 3.5s linear infinite;
+  border-radius: 8px;
+  color: inherit;
+  padding: 12px 40px;
+  text-decoration: none;
+}
+
+@keyframes blink {
+  0% {
+    background-color: #aa33b5;
+  }
+  50% {
+    background-color: #14152c;
+  }
+  100% {
+    background-color: #aa33b5;
+  }
+}
