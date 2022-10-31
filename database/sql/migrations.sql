@@ -1,4 +1,5 @@
-CREATE DATABASE IF NOT EXISTS cryptoUpvoting;
+DROP DATABASE IF EXISTS cryptoUpvoting;
+CREATE DATABASE cryptoUpvoting;
 USE cryptoUpvoting;
 
 DROP TABLE IF EXISTS users;
