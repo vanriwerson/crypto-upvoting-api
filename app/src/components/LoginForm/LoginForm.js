@@ -9,8 +9,7 @@ function LoginForm() {
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
 
-  const login = async (e) => {
-    e.preventDefault();
+  const login = async () => {
     try {
       const token = await requestLogin("/login", { email, password });
       setToken(token);
@@ -61,9 +60,9 @@ function LoginForm() {
       ) : null}
 
       <button
-        type="submit"
+        type="button"
         className="btn"
-        onClick={(e) => login(e)}
+        onClick={ login }
       >
         Login
       </button>
