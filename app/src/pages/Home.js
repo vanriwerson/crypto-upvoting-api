@@ -10,7 +10,7 @@ function Home() {
       
       <RankingBoard />
 
-      <Link to='/login' className="cta">Timme to choose your favorite!</Link>
+      <Link to='/login' className="cta">Time to choose your favorite!</Link>
     </section>
   )
 }

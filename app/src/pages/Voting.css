@@ -1,0 +1,18 @@
+.voting-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+}
+
+.voting-form select,
+.voting-form button {
+  width: 240px;
+}
+
+.voting-form select {
+  border-radius: 8px;
+  margin-bottom: 8px;
+  outline: none;
+  padding: 12px;
+}
