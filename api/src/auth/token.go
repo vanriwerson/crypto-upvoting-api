@@ -38,7 +38,7 @@ func ValidateToken(r *http.Request) error {
 	return errors.New("token must be a valid token")
 }
 
-func getUserIdFromToken(r *http.Request) (uint64, error) {
+func GetUserIdFromToken(r *http.Request) (uint64, error) {
 	tokenString := getTokenFromHeaders(r)
 
 	token, erro := jwt.Parse(tokenString, validateSigningMethod)
