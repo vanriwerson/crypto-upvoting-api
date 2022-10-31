@@ -1,11 +1,13 @@
 package controllers
 
 import (
+	"api/src/auth"
 	"api/src/db"
 	"api/src/models"
 	repos "api/src/repositories"
 	"api/src/responses"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -25,6 +27,13 @@ func CreateVote(w http.ResponseWriter, r *http.Request) {
 		responses.Err(w, http.StatusBadRequest, err)
 		return
 	}
+
+	tokenUserId, err := auth.GetUserIdFromToken(r)
+	if err != nil {
+		responses.Err(w, http.StatusUnauthorized, err)
+	}
+
+	vote.UserId = fmt.Sprintf("%d", tokenUserId)
 
 	if err = vote.Prepare(); err != nil {
 		responses.Err(w, http.StatusBadRequest, err)
