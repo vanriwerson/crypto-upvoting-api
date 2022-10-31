@@ -13,7 +13,6 @@ function LoginForm() {
     e.preventDefault();
     try {
       const token = await requestLogin("/login", { email, password });
-      console.log(token);
       setToken(token);
 
       localStorage.setItem("token", token);
@@ -63,8 +62,8 @@ function LoginForm() {
 
       <button
         type="submit"
-        className="login-btn"
-        onClick={(event) => login(event)}
+        className="btn"
+        onClick={(e) => login(e)}
       >
         Login
       </button>
